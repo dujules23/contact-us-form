@@ -1,64 +1,80 @@
+import '../Form.css'
 import React from 'react';
+
+// let today = new Date().toISOString();
+//   document.querySelector("#today").value = today;
 
 export default function Form(props) {
 
-  const { values, update, submit } = props
+  
+
+  const { values, update, submit, clear } = props;
+
+  console.log(values)
 
   const handleChange = e => {
 
-    const name = e.tartget.name
-    const value = e.target.value
+    // const name = e.tartget.name
+ 
 
-    update(name, value);
-  }
+    update(e.target.name, e.target.value);
+  };
 
 
   const handleSubmit = e => {
     e.preventDefault();
 
     submit();
-  }
+  };
 
 
   return (
-    <form className='form-container' handleSubmit={handleSubmit}>
+    <form className='form-container' onSubmit={handleSubmit}>
       <div>
-        <label>Name
+        <label className='form-input'>Name
           <input 
           name='name'
           type='text'
           placeholder='enter name'
           value={values.name}
-          handleChange={handleChange}/>
+          onChange={handleChange}/>
         </label>
 
-        <label>Email
+        <label className='form-input'>Email
           <input 
           name='email'
           type='email'
           placeholder='enter email'
           value={values.email}
-          handleChange={handleChange}/>
+          onChange={handleChange}/>
         </label>
 
-        <label>Birth Date
+        <label className='form-input'>Birth Date
           <input 
-          name='birth date'
-          type='text'
+          id='today'
+          type='date'
           placeholder='enter birth date'
           value={values.birthdate}
-          handleChange={handleChange}/>
+          onChange={handleChange}/>
         </label>
 
-        <label>I Agree To Be Contacted Via Email
+        <label className='form-input'>I Agree To Be Contacted Via Email
           <input 
           name='agreement checkbox'
           type='checkbox'
           value={values.agreement}
-          handleChange={handleChange}/>
+          onChange={handleChange}/>
         </label>
+        
+        <div>
+          <button className="button" onClick={()=> clear()}>Clear</button>
+        </div>
+
+        <div>
+          <button className="button">Submit</button>
+        </div>
 
       </div>
     </form>
-  )
-}
+  );
+};
