@@ -1,15 +1,22 @@
 import React from 'react';
 
-export default function Form() {
+export default function Form(props) {
+
+  const { values, update, submit } = props
 
   const handleChange = e => {
 
+    const name = e.tartget.name
+    const value = e.target.value
 
+    update(name, value);
   }
 
 
   const handleSubmit = e => {
+    e.preventDefault();
 
+    submit();
   }
 
 
@@ -21,7 +28,7 @@ export default function Form() {
           name='name'
           type='text'
           placeholder='enter name'
-          value={}
+          value={values.name}
           handleChange={handleChange}/>
         </label>
 
@@ -30,7 +37,7 @@ export default function Form() {
           name='email'
           type='email'
           placeholder='enter email'
-          value={}
+          value={values.email}
           handleChange={handleChange}/>
         </label>
 
@@ -39,7 +46,7 @@ export default function Form() {
           name='birth date'
           type='text'
           placeholder='enter birth date'
-          value={}
+          value={values.birthdate}
           handleChange={handleChange}/>
         </label>
 
@@ -47,7 +54,7 @@ export default function Form() {
           <input 
           name='agreement checkbox'
           type='checkbox'
-          value={}
+          value={values.agreement}
           handleChange={handleChange}/>
         </label>
 
