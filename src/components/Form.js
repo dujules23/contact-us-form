@@ -1,32 +1,21 @@
 import '../Form.css'
 import React from 'react';
 
-// let today = new Date().toISOString();
-//   document.querySelector("#today").value = today;
-
 export default function Form(props) {
-
-  
 
   const { values, update, submit, clear } = props;
 
   console.log(values)
 
   const handleChange = e => {
-
-    // const name = e.tartget.name
- 
-
     update(e.target.name, e.target.value);
   };
-
 
   const handleSubmit = e => {
     e.preventDefault();
 
     submit();
   };
-
 
   return (
     <form className='form-container' onSubmit={handleSubmit}>

@@ -22,7 +22,7 @@ export const useForm = (initialValues, schema) => {
     const clearForm = () => {
       setFormValues(initialValues)
     }
-    
+
     const validate = async() => {
 
         const isValid = await schema.isValid(formValues);
@@ -39,6 +39,6 @@ export const useForm = (initialValues, schema) => {
         }
         return [formErrors,isValid];
     };
-    console.log(validate)
+
     return {formValues, validate, updateForm, submitForm, clearForm};
 };
