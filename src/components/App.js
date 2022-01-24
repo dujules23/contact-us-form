@@ -17,7 +17,6 @@ function App() {
   // const [formValues, setFormValues] = useState(initialValues)
   return (
     <div className="App">
-      <h1>Contact Us</h1>
       <Form
         values={formValues}
         update={updateForm}

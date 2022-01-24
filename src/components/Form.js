@@ -19,6 +19,7 @@ export default function Form(props) {
 
   return (
     <form className='form-container' onSubmit={handleSubmit}>
+      <h1 className='title'>Contact Us</h1>
       <div>
         <label className='form-input'>Name
           <input 
@@ -47,7 +48,7 @@ export default function Form(props) {
           onChange={handleChange}/>
         </label>
 
-        <label className='form-input'>I Agree To Be Contacted Via Email
+        <label className='checkbox'>I Agree To Be Contacted Via Email
           <input 
           name='agreement checkbox'
           type='checkbox'
