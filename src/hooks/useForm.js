@@ -1,11 +1,28 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import * as yup from 'yup';
-export const useForm = (initialValues, schema) => {
+import axios from 'axios'
+
+import Schema from '../helpers/Schema'
+
+
+export const useForm = (initialValues) => {
   
     const [formValues, setFormValues] = useState(initialValues);
 
-    const updateForm = (inputName, inputValue) => {
+    const [errors, setErrors] = useState(initialValues)
+
+    const [disabled, setDisabled] = useState(true)
+
+    const updateForm = (inputName, inputValue, e) => {
+      // const {checked, type, name, value } = e.target
+
+      // console.log(type)
+
+      // const valueToUse = type === 'checkbox' ? checked : value
+
       setFormValues({...formValues, [inputName]: inputValue})
+
+      setErrors(inputName, inputValue )
     };
 
     const submitForm = () => {
@@ -17,28 +34,34 @@ export const useForm = (initialValues, schema) => {
       }
     
       if (!newSubmission.name || !newSubmission.email || !newSubmission.birthdate || !newSubmission.agreement) return;
+
+      axios.post('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', newSubmission)
+        .then((res) => {
+          console.log("-------------->>>",res)
+          setFormValues({
+            name:'',
+            email:'',
+            birthdate:'',
+            agreement: false
+          })
+        })
+        .catch((err) => console.log(err))
     };
 
     const clearForm = () => {
       setFormValues(initialValues)
     }
 
-    const validate = async() => {
-
-        const isValid = await schema.isValid(formValues);
-
-        const formErrors = {};
-        for(let name in formValues){
-            try{
-                await yup.reach(schema,name).validate(formValues[name]);
-                formErrors[name] = '';
-            }
-            catch(error){
-                formErrors[name] = error.errors[0];
-            }
-        }
-        return [formErrors,isValid];
+    const validate = (name, value) => {
+        yup.reach(Schema, name)
+          .validate(value)
+          .then(() => setErrors({...errors, [name]: ''}))
+          .catch(err => setErrors({...errors, [name]: err.errors[0]}))
     };
 
-    return {formValues, validate, updateForm, submitForm, clearForm};
+    useEffect(() => {
+      Schema.isValid(formValues).then(valid => setDisabled(!valid))
+    }, [formValues])
+
+    return {formValues, validate, updateForm, submitForm, clearForm, errors, disabled};
 };
