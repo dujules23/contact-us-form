@@ -18,17 +18,17 @@ const schema = yup.object().shape({
 
   birthdate: yup 
     .date().transform(function(currentValue, originalValue){
-      // using moment to validate date with strict mode set to true
+     
       currentValue = moment(originalValue,'MM/DD/YYYY',true);
       if(!currentValue.isValid()){
-        // return an invalid date
+        
         return currentValue.toDate();
       }
-      // cast the valid date string to Date
+      
       return new Date(originalValue);
     })
     .transform(function(currentValue, originalValue){
-      // identify emptystring and return null for nullable to pass
+      
       return originalValue === '' ? null : currentValue;
     })
     .nullable().default(function () {

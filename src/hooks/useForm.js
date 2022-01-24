@@ -8,17 +8,10 @@ import Schema from '../helpers/Schema'
 export const useForm = (initialValues) => {
   
     const [formValues, setFormValues] = useState(initialValues);
-
-    const [errors, setErrors] = useState(initialValues)
-
-    const [disabled, setDisabled] = useState(true)
+    const [errors, setErrors] = useState(initialValues);
+    const [disabled, setDisabled] = useState(true);
 
     const updateForm = (inputName, inputValue, e) => {
-      // const {checked, type, name, value } = e.target
-
-      // console.log(type)
-
-      // const valueToUse = type === 'checkbox' ? checked : value
 
       setFormValues({...formValues, [inputName]: inputValue})
 

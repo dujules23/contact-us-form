@@ -14,7 +14,7 @@ const initialValues = {
 
 function App() {
   const { formValues, updateForm, submitForm, clearForm, validate, errors, disabled } = useForm(initialValues);
-  // const [formValues, setFormValues] = useState(initialValues)
+
   return (
     <div className="App">
       <Form
