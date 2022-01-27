@@ -33,7 +33,7 @@
     background: #26408b;
     margin: 0 auto;
     margin-top: 1rem;
-    width: 20%;
+    /* width: 20%; */
     height: 8%;
     border: none;
     border-radius: 5px;
@@ -42,4 +42,16 @@
     font-weight: 500;
     padding: 2%;    
     justify-content: flex-end;
+}
+
+
+@media all {
+  .form-container{
+    width: 100%
+  }
+
+  .form-input{
+    width: 50%;
+  }
+
 }
