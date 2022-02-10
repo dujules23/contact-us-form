@@ -16,7 +16,7 @@ const schema = yup.object().shape({
     .required('Email is required')
     .min(2, 'Email must be 2 characters long'), 
 
-  birthdate: yup 
+  birthDate: yup 
     .date().transform(function(currentValue, originalValue){
      
       currentValue = moment(originalValue,'MM/DD/YYYY',true);
@@ -35,7 +35,7 @@ const schema = yup.object().shape({
       console.log('default is called');
         return new Date();
       }).typeError('Enter a valid date in the format: MM/DD/YYYY'),
-  agreement: yup
+  emailConsent: yup
     .boolean()
     .required('Email consent must be accepted.')
     .oneOf([true], "Please check to receive JUC emails and newsletters."),
