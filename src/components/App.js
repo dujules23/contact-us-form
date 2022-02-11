@@ -8,8 +8,8 @@ const initialValues = {
 
   name: '',
   email: '',
-  birthdate: '',
-  agreement: false
+  birthDate: '',
+  emailConsent: false
 };
 
 function App() {

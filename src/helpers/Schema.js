@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { string } from 'yup/lib/locale';
 import moment from 'moment';
 const schema = yup.object().shape({
 

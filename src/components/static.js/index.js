@@ -12,12 +12,7 @@ const content = {
     },
     {
       label: "Birthdate",
-      name:'birthdate',
-      type: 'date',
-    },
-    {
-      label: "Birthdate",
-      name:'birthdate',
+      name:'birthDate',
       type: 'date',
     },
   ],
