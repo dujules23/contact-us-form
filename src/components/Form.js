@@ -48,9 +48,7 @@ export default function Form(props) {
           marginTop: 10,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          p:8, border: '1px dashed grey'
-
+          alignItems: 'center'
         }}>
           <Typography component="h2" variant="h4">Sign In</Typography>
           <Box size="large" component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{mt:1}}>
