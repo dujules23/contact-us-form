@@ -2,10 +2,10 @@ import * as yup from 'yup';
 import moment from 'moment';
 const schema = yup.object().shape({
 
-  name: yup
+  username: yup
     .string()
     .trim()
-    .required('Name is required')
+    .required('Username is required')
     .min(2, 'Username must be 2 characters long'), 
 
   email: yup
@@ -18,11 +18,11 @@ const schema = yup.object().shape({
   birthDate: yup 
     .date().transform(function(currentValue, originalValue){
      
-      currentValue = moment(originalValue,'MM/DD/YYYY',true);
-      if(!currentValue.isValid()){
+      currentValue = moment().format('L');
+      // if(!currentValue.isValid()){
         
-        return currentValue.toDate();
-      }
+      //   return currentValue.toDate();
+      // }
       
       return new Date(originalValue);
     })
@@ -31,7 +31,6 @@ const schema = yup.object().shape({
       return originalValue === '' ? null : currentValue;
     })
     .nullable().default(function () {
-      console.log('default is called');
         return new Date();
       }).typeError('Enter a valid date in the format: MM/DD/YYYY'),
   emailConsent: yup
