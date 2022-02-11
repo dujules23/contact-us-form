@@ -6,6 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import Schema from '../helpers/Schema'
 import axios from 'axios';
 
+import { FormHelperText } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
@@ -40,22 +41,23 @@ export default function Form(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="lg">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
         sx={{
-          marginTop: 8,
+          marginTop: 10,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          p:8, border: '1px dashed grey'
+
         }}>
           <Typography component="h2" variant="h4">Sign In</Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{mt:1}}>
+          <Box size="large" component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{mt:1}}>
             {content.inputs.map((input, key) => {
               return(
               <Box key={key}>
                   <TextField
-                  autoFocus
                   margin="normal"
                   required
                   fullWidth
@@ -65,17 +67,20 @@ export default function Form(props) {
                   type={input.type}
                   {...register(`${input.name}`, {required: true})}
                   />
-              <p>{errors[input.name]?.message}</p>
+              <FormHelperText error="true">{errors[input.name]?.message}</FormHelperText>
               </Box>
               );
             })}
             <FormControlLabel
+              // sx={{ width: 3/4 }}
               control={<Checkbox color="primary" />}
-              label="Email Consent"
+              label="I agree to be contacted via email"
               name="emailConsent"
-              {...register("emailConsent", {required : false})}
+              {...register("emailConsent", {required : true})}
             />
-            <p>{errors.emailConsent ? errors.emailConsent.message : " "}</p>
+              <FormHelperText error="true">
+                <p>{errors.emailConsent?.message}</p>
+              </FormHelperText>
             <Button 
             type="submit" 
             fullWidth variant="contained" 
@@ -90,8 +95,8 @@ export default function Form(props) {
             >
             Clear
             </Button>
-            </Box> 
-          </Box>
+          </Box> 
+        </Box>
       </Container>
     </ThemeProvider>
   );
