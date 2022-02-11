@@ -45,7 +45,7 @@ export default function Form(props) {
         <CssBaseline />
         <Box
         sx={{
-          marginTop: 10,
+          marginTop: 20,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'
