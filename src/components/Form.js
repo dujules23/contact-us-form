@@ -81,15 +81,15 @@ export default function Form(props) {
               </FormHelperText>
             <Button 
             type="submit" 
-            fullWidth variant="contained" 
-            sx={{ mt: 3, mb: 2 }}
+            size="xl" variant="contained" 
+            sx={{ mt: 3, mb: 2, mx: 2 }}
             >
             Submit
             </Button>
             <Button 
             type="reset" 
-            fullWidth variant="contained" 
-            sx={{ mt: 3, mb: 2 }}
+            size="xl" variant="contained" 
+            sx={{ mt: 3, mb: 2, mx: 2 }}
             >
             Clear
             </Button>
